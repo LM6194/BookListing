@@ -38,7 +38,6 @@ public class MainActivity extends AppCompatActivity {
 
                 if (!value.equals("")) {
                     booksRequestUrl = "https://www.googleapis.com/books/v1/volumes?q="+value+"&maxResults=40";
-                    Log.i(LOG_TAG,"value of booksRequestUrl: "+ booksRequestUrl);
 
                     Intent i = new Intent(MainActivity.this, SearchBookActivity.class);
                     startActivity(i);
