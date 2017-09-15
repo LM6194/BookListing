@@ -1,7 +1,6 @@
 package com.example.luis.booklisting;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -52,7 +51,6 @@ public class BookAdapter extends ArrayAdapter<Book>{
         String author = currentBook.getAutor();
         // display the title in the current book author TextView
         authorTextView.setText(author);
-        Log.i(LOG_TAG, "test :"+listItemView);
 
         // return the list item view that is now showing the appropriate data
         return listItemView;

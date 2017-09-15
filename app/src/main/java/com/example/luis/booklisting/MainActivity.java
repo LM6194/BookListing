@@ -4,7 +4,6 @@ package com.example.luis.booklisting;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -19,11 +18,8 @@ public class MainActivity extends AppCompatActivity {
 
     private String value = "";
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Log.i(LOG_TAG, " Test: Start Main Activity");
-        Log.i(LOG_TAG, " Test: value of value "+ value);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -34,7 +30,6 @@ public class MainActivity extends AppCompatActivity {
 
                 EditText editText = (EditText) findViewById(R.id.book_topic);
                 value = editText.getText().toString();
-                Log.i("MainActivity","value of value: "+value);
 
                 if (!value.equals("")) {
                     booksRequestUrl = "https://www.googleapis.com/books/v1/volumes?q="+value+"&maxResults=40";

@@ -8,7 +8,6 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -43,7 +42,6 @@ public class SearchBookActivity extends AppCompatActivity implements LoaderCallb
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Log.i(LOG_TAG, "Test: Search Book Activity onCreate() called...");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.search_book_activity);
 
@@ -89,14 +87,11 @@ public class SearchBookActivity extends AppCompatActivity implements LoaderCallb
 
     @Override
     public Loader<List<Book>> onCreateLoader(int id, Bundle args){
-        Log.i(LOG_TAG, "Test: calling onCreateLoader() called...");
         //Create a new loader for the given url
         return new BookLoader(this, requestUrl);
     }
     @Override
     public void onLoadFinished(Loader<List<Book>> loader, List<Book> books) {
-        Log.i(LOG_TAG, "TEST: calling onLoadFinished() called...");
-
         // Hide loading indicator because the data has been loaded
         View loadingIndicator = findViewById(R.id.loading_indicator);
         loadingIndicator.setVisibility(View.GONE);
@@ -116,7 +111,6 @@ public class SearchBookActivity extends AppCompatActivity implements LoaderCallb
 
     @Override
     public void onLoaderReset(Loader<List<Book>> loader) {
-        Log.i(LOG_TAG, "TEST: calling onLoaderReset() called...");
         // Loader reset, so we can clear out our existing data.
         mAdapter.clear();
 

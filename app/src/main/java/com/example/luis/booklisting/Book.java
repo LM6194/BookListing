@@ -16,19 +16,16 @@ public class Book {
      * @param author is the name of the author
      * @param title is the title of the book
      */
-
     public Book(String author, String title){
         mAutor = author;
         mTitle = title;
     }
-
     /**
      * @return the name of the author
      */
     public String getAutor() {
         return mAutor;
     }
-
     /**
      * @return the title of the book
      */

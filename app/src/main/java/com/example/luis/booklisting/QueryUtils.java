@@ -41,7 +41,6 @@ public final class QueryUtils {
      * Query the google books data set and return a list of {@link Book} objects.
      */
     public static List<Book> fetchBookData(String requestUrl){
-        Log.i(LOG_TAG, "Test: fetchBookData() called...");
         // Create URL object
         URL url = createUrl(requestUrl);
 
@@ -161,21 +160,28 @@ public final class QueryUtils {
                 // key call "volumenInfo", which represent a list of all the info
                 // about the book
                 JSONObject currentInfo = currentBook.getJSONObject("volumeInfo");
-                // Extract the value for key called "authors"
-                JSONArray authors = currentInfo.getJSONArray("authors");
-                // Extract the first value in the jsonArray "authors"
-                String author = authors.getString(0);
-                // Extract the value for the key "title"
-                String title = currentInfo.getString("title");
+                //check if the JSONArray has the key called "authors"
 
-                // Create a new {@link Book} object with the author and title
-                Book book = new Book(author, title);
+                try {
+                    // Extract the value for key called "authors"
+                    JSONArray authors = currentInfo.getJSONArray("authors");
+                    // Extract the first value in the jsonArray "authors"
+                    String author = authors.getString(0);
+                    // Extract the value for the key "title"
+                    String title = currentInfo.getString("title");
 
-                books.add(book);
+                    // Create a new {@link Book} object with the author and title
+                    Book book = new Book(author, title);
+
+                    books.add(book);
+                } catch (JSONException e) {
+                    Log.e(LOG_TAG, "No key name authors was foung",e);
+                }
+
 
             }
         }catch (JSONException e){
-            Log.e("QueryUtils", "Problem parsing the book JSON resuls", e);
+            Log.e(LOG_TAG, "Problem parsing the book JSON resuls", e);
         }
         return books;
 
