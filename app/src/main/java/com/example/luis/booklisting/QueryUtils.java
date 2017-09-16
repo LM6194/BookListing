@@ -133,6 +133,8 @@ public final class QueryUtils {
      * parsing the given JSON response.
      */
     private static List<Book> extractFeatureFromJson(String bookJSON){
+        // initialize author variable.
+        String author;
         // IF the JSON string is empty or null, then return early.
         if(TextUtils.isEmpty(bookJSON)){
             return null;
@@ -157,27 +159,25 @@ public final class QueryUtils {
                 //Get a single book at position i  with in the list of books
                 JSONObject currentBook = bookArray.getJSONObject(i);
                 // for a given book, extract the JSONObject associate with the
-                // key call "volumenInfo", which represent a list of all the info
+                // key call "volumeInfo", which represent a list of all the info
                 // about the book
                 JSONObject currentInfo = currentBook.getJSONObject("volumeInfo");
-                //check if the JSONArray has the key called "authors"
 
-                try {
-                    // Extract the value for key called "authors"
+                //check if the JSONObject currentInfo has the key called "authors"
+                if(currentInfo.has("authors")) {
                     JSONArray authors = currentInfo.getJSONArray("authors");
                     // Extract the first value in the jsonArray "authors"
-                    String author = authors.getString(0);
-                    // Extract the value for the key "title"
-                    String title = currentInfo.getString("title");
-
-                    // Create a new {@link Book} object with the author and title
-                    Book book = new Book(author, title);
-
-                    books.add(book);
-                } catch (JSONException e) {
-                    Log.e(LOG_TAG, "No key name authors was foung",e);
+                    author = authors.getString(0);
+                } else {
+                     author = "Anonymous";
                 }
+                // Extract the value for the key "title"
+                String title = currentInfo.getString("title");
 
+                // Create a new {@link Book} object with the author and title
+                Book book = new Book(author, title);
+
+                books.add(book);
 
             }
         }catch (JSONException e){
